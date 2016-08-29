@@ -23,10 +23,10 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         stopButton.enabled = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
     
     @IBAction func recordAudio(sender: AnyObject) {
         print("record button was pressed")
@@ -51,7 +51,6 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     @IBAction func stopRecord(sender: AnyObject) {
-        print("stop button was pressed")
         recordingLable.text = "Tap to Record"
         recordButton.enabled = true
         stopButton.enabled = false
@@ -68,8 +67,8 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         print("AVAudioRecorder finished saving audio")
-        if(flag) {
-            self.performSegueWithIdentifier("stopRecording", sender: audioRecorder.url)
+        if flag {
+            performSegueWithIdentifier("stopRecording", sender: audioRecorder.url)
         } else {
             print("saving of recording failed")
         }
