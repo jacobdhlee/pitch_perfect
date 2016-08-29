@@ -66,10 +66,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         try! AudioSession.setActive(false)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        print("done")
-    }
-    
+       
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         print("AVAudioRecorder finished saving audio")
         if flag {
