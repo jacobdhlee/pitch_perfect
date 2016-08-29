@@ -23,16 +23,23 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         stopButton.enabled = false
     }
 
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
+    func enable () {
+        if stopButton.enabled {
+            stopButton.enabled = false
+        } else {
+            stopButton.enabled = true
+        }
+        if recordButton.enabled {
+            recordButton.enabled = false
+        } else {
+            recordButton.enabled = true
+        }
+        
+    }
     
     @IBAction func recordAudio(sender: AnyObject) {
-        print("record button was pressed")
         recordingLable.text = "Recording"
-        stopButton.enabled = true
-        recordButton.enabled = false
+        enable()
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
@@ -50,15 +57,13 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
         
     }
+    
     @IBAction func stopRecord(sender: AnyObject) {
         recordingLable.text = "Tap to Record"
-        recordButton.enabled = true
-        stopButton.enabled = false
+        enable()
         audioRecorder.stop()
         let AudioSession = AVAudioSession.sharedInstance()
         try! AudioSession.setActive(false)
-
-        
     }
     
     override func viewWillAppear(animated: Bool) {
